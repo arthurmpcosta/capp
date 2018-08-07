@@ -1,0 +1,146 @@
+
+
+.body {
+
+    background-image: url("../img/03.png"), url("../img/04.png") ;
+    background-position: left top, left bottom;
+    background-size: 100% 92%;
+    background-repeat: no-repeat ,repeat;
+    margin: 0 0 0 42%;
+
+}
+
+.bodyAlternative{
+
+    background-image: url("../img/03.png"), url("../img/04.png") ;
+    background-position: left top, left bottom;
+    background-size: 100% 92%;
+    background-repeat: no-repeat ,repeat;
+
+}
+
+.loginForm{
+
+
+
+}
+
+.loginImages{
+    
+    padding-left: 4%;
+    
+}
+
+.loginButton{
+
+    background-color: #459e00;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+
+}
+
+.voltarButton{
+
+    background-color: blue;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+
+}
+
+.loginInputs{
+
+}
+
+.menuButtons{
+
+    background-color: #459e00;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+
+}
+
+.logOut{
+
+    background-color: red;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+
+}
+
+.save{
+
+    background-color: #459e00;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+
+}
+
+.attendenceListButton{
+
+    background-color: #459e00;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+
+}
+
+.exportersButton{
+
+    background-color: #459e00;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 7%;
+    border-radius: 5px;
+
+}
+
+.activitiesTable{
+
+    text-align: center;
+    font-size: 13px;
+}
+
+.fiscaisTable{
+
+    text-align: center;
+    font-size: 13px;
+
+}
+
+.usersTable{
+    
+    text-align: center;
+    font-size: 13px;
+    
+}

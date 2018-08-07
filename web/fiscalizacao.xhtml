@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"     
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      lang="pt-br">
+    <h:head>
+
+        <title>Reuniões</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/template.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </h:head>
+
+
+    <h:body class="bodyAlternative">
+
+        <p:growl/>
+
+        <div class="ui-fluid">
+
+            <div class="activitiesTable">
+
+                <h:form>
+
+                    <p:dataTable id="fiscalizacoes"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 emptyMessage="Nenhuma FiscalizaÇão Encontrada" reflow="true" value="#{fiscalizacaoBean.fiscalizacoes}" 
+                                 var ="fiscalizacoes" rows="20" paginator="true"  >                             
+
+                        <f:facet name="header">
+                            Lista de Fiscalizações
+                        </f:facet>
+
+                        <p:column headerText="Código" filterBy="#{fiscalizacoes.id}" filterMatchMode="contains" style="width: 4%">
+                            <h:outputText value="#{fiscalizacoes.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Zona" filterBy="#{fiscalizacoes.zona}" filterMatchMode="contains" style="width: 4%">
+                            <h:outputText value="#{fiscalizacoes.zona}"/>
+                        </p:column>
+
+                        <p:column headerText="Seção" filterBy="#{fiscalizacoes.secao}" filterMatchMode="contains" style="width: 4%">
+                            <h:outputText value="#{fiscalizacoes.secao}"/>
+                        </p:column>
+
+                        <p:column headerText="Bairro" filterBy="#{fiscalizacoes.rua}" filterMatchMode="contains" style="width: 10%">
+                            <h:outputText value="#{fiscalizacoes.bairro}"/>
+                        </p:column>
+
+                        <p:column headerText="Localização" filterBy="#{fiscalizacoes.rua}" filterMatchMode="contains">
+                            <h:outputText value="#{fiscalizacoes.rua}, #{fiscalizacoes.numero}"/>
+                        </p:column>
+
+                        <p:column headerText="Coordenador" filterBy="#{fiscalizacoes.coordenador}" filterMatchMode="contains" style="width: 15%">
+                            <h:outputText value="#{fiscalizacoes.coordenador}"/>
+                        </p:column>
+
+                        <p:column headerText="Fiscais" style="width: 5%" exportable="false">
+                            <p:commandLink  onclick="PF('fiscais').show();" >
+                                <button value=""  class="attendenceListButton">
+                                    <i class="fa fa-list"/>
+                                </button>
+                            </p:commandLink>
+                        </p:column>
+
+                        <p:column headerText="Editar" style="width: 8%" exportable="false">
+                            <button value=""  class="attendenceListButton">
+                                <i class="fa fa-edit"/>
+                            </button>
+                        </p:column>
+
+                        <p:column headerText="Remover" style="width: 8%" exportable="false">
+                            <button value=""  class="attendenceListButton">
+                                <i class="fa fa-remove"/>
+                            </button>
+                        </p:column>    
+
+                        <f:facet name="footer">
+
+                            <p:commandLink id="toggler"> 
+                                <button value=""  class="exportersButton">
+                                    Colunas
+                                    <p:columnToggler datasource="fiscalizacoes" trigger="toggler" />
+                                </button>
+                            </p:commandLink>
+
+                            <p:commandLink ajax="false">
+                                <button value=""  class="exportersButton">
+                                    Excel
+                                    <p:dataExporter type="xls" target="fiscalizacoes" fileName="fiscalizacoes" />
+                                </button>
+                            </p:commandLink>
+
+                            <p:commandLink ajax="false">
+                                <button value=""  class="exportersButton">
+                                    PDF
+                                    <p:dataExporter type="pdf" target="fiscalizacoes" fileName="fiscalizacoes" />
+                                </button>
+                            </p:commandLink>
+
+
+                        </f:facet>
+
+                    </p:dataTable>
+
+                </h:form>
+
+                <div class="loginForm">
+
+                    <h:form>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <h:commandLink action="menuAtividades.jsf">
+                            <button value=""  class="voltarButton">
+                                VOLTAR
+                                <i class="fa fa-arrow-left"/>
+                            </button>
+                        </h:commandLink>
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h:form>
+            <div class="activitiesTable">
+
+                <p:dialog widgetVar="fiscais" modal="true" width="600px">
+
+                    <p:dataTable id="fiscaisData" styleClass="fiscaisTable"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 emptyMessage="Nenhum FIscal Encontrado" reflow="true" value="#{fiscalizacaoBean.fiscais}" 
+                                 var ="fiscais" rows="20" paginator="true">
+
+                        <f:facet name="header">
+                            Lista de Fiscais da Seção
+                        </f:facet>
+
+                        <p:column headerText="Código" filterBy="#{fiscais}" filterMatchMode="contains" style="width: 20%">
+                            <h:outputText value="#{fiscais}"/>
+                        </p:column>
+
+                        <p:column headerText="Presente" filterMatchMode="contains" style="width: 6%">
+                            <p:selectOneRadio>
+                                <f:selectItem itemValue="Sim" itemLabel="Sim"/>
+                                <f:selectItem itemValue="Não" itemLabel="Não"/>
+                            </p:selectOneRadio>                    
+                        </p:column>
+
+
+                    </p:dataTable>
+
+                </p:dialog>  
+                
+            </div>
+            
+        </h:form>
+
+    </h:body>
+
+</html>
+

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"     
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:p="http://primefaces.org/ui"      
+      lang="pt-br"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Reuniões</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/template.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </h:head>
+
+
+    <h:body class="bodyAlternative">
+
+        <p:growl/>
+
+        <div class="ui-fluid">
+
+            <div class="activitiesTable">
+
+                <h:form>
+
+                    <p:dataTable id="atividades"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 emptyMessage="Nenhuma Atividade Encontrada" styleClass="relatorio" reflow="true" value="#{atividadeBean.atividades}" 
+                                 var ="atividades" rows="20" paginator="true"  >                             
+
+                        <f:facet name="header">
+                            Lista de Atividades
+                        </f:facet>
+
+                        <p:column headerText="Código" filterBy="#{atividades.id}" filterMatchMode="contains" style="width: 6%">
+                            <h:outputText value="#{atividades.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Data" filterBy="#{atividades.dataAtividade}" filterMatchMode="contains">
+                            <h:outputText value="#{atividades.dataAtividade}"/>
+                        </p:column>
+
+                        <p:column headerText="Atividade" filterBy="#{atividades.descricaoAtividade}" filterMatchMode="contains">
+                            <h:outputText value="#{atividades.descricaoAtividade}"/>
+                        </p:column>
+
+                        <p:column headerText="Coordenador" filterBy="#{atividades.coordenador}" filterMatchMode="contains">
+                            <h:outputText value="#{atividades.coordenador}"/>
+                        </p:column>
+
+                        <p:column headerText="Bairro" filterBy="#{atividades.bairro}" filterMatchMode="contains">
+                            <h:outputText value="#{atividades.bairro}"/>
+                        </p:column>
+
+                        <p:column headerText="Endereço" filterBy="#{atividades.rua}" filterMatchMode="contains">
+                            <h:outputText value="#{atividades.rua}, #{atividades.numero}"/>
+                        </p:column>
+
+                        <p:column headerText="Convidados" style="width: 5%">
+                            <h:outputText value="25"/>
+                        </p:column>
+
+                        <p:column headerText="Presentes" style="width: 5%">
+                            <h:outputText value="25"/>
+                        </p:column>
+
+                        <p:column headerText="%" style="width: 4%">
+                            <h:outputText value="100%"/>
+                        </p:column>
+
+                        <p:column headerText="Fotos" style="width: 5%" exportable="false">
+                            <p:commandLink  onclick="PF('fotos').show();" >
+                                <button value=""  class="attendenceListButton">
+                                    <i class="fa fa-list"/>
+                                </button>
+                            </p:commandLink>
+                        </p:column>
+
+                        <p:column headerText="Editar" style="width: 8%" exportable="false">
+                            <button value=""  class="attendenceListButton">
+                                <i class="fa fa-edit"/>
+                            </button>
+                        </p:column>
+
+                        <p:column headerText="Remover" style="width: 8%" exportable="false">
+                            <button value=""  class="attendenceListButton">
+                                <i class="fa fa-remove"/>
+                            </button>
+                        </p:column>    
+
+                        <f:facet name="footer">
+
+                            <p:commandLink id="toggler"> 
+                                <button value=""  class="exportersButton">
+                                    Colunas
+                                    <p:columnToggler datasource="atividades" trigger="toggler" />
+                                </button>
+                            </p:commandLink>
+
+                            <p:commandLink ajax="false">
+                                <button value=""  class="exportersButton">
+                                    Excel
+                                    <p:dataExporter type="xls" target="atividades" fileName="atividades" />
+                                </button>
+                            </p:commandLink>
+
+                            <p:commandLink ajax="false">
+                                <button value=""  class="exportersButton">
+                                    PDF
+                                    <p:dataExporter type="pdf" target="atividades" fileName="atividades" />
+                                </button>
+                            </p:commandLink>
+
+
+                        </f:facet>
+
+                    </p:dataTable>
+
+                </h:form>
+
+                <div class="loginForm">
+
+                    <h:form>
+                        
+                        <br/>
+                        <br/>
+                        <br/>
+                        
+                        <h:commandLink action="menuAtividades.jsf">
+                            <button value=""  class="voltarButton">
+                                VOLTAR
+                                <i class="fa fa-arrow-left"/>
+                            </button>
+                        </h:commandLink>
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h:form>
+            <p:dialog header="Fotos" widgetVar="fotos" modal="true" width="800px">
+                <p:carousel numVisible="1" effect="easeInStrong" >
+                    <p:tab title="Foto 1">
+                        <img src="fotos/1.jpeg"  style="width: 800px"/>
+                    </p:tab>
+                    <p:tab title="Foto 2">
+                        <img src="fotos/2.jpeg" style="width: 800px"/>
+                    </p:tab>                    
+                    <p:tab title="Foto 3">
+                        <img src="fotos/3.jpeg" style="width: 800px"/>
+                    </p:tab>
+                </p:carousel>
+            </p:dialog>  
+        </h:form>
+
+    </h:body>
+
+</html>
+

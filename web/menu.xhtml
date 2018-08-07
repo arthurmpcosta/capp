@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"     
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:p="http://primefaces.org/ui"      
+      lang="pt-br"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/template.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </h:head>
+
+
+    <h:body class="bodyAlternative">
+
+        <p:growl/>
+
+        <div class="ui-fluid">
+
+            <p:panelGrid id="cidade" columns="3" columnClasses="ui-grid-col-5, ui-grid-col-2, ui-grid-col-5" layout="grid" styleClass="ui-panelgrid-blank" rendered="#{usuarioBean.renderSelecionarCidade}">
+
+                <h:outputLabel value=""/>
+
+                <h:form>
+
+                    <h:outputText value="Selecione a Cidade:"/>
+                    <p:selectOneMenu value="#{usuarioBean.usuario.cidade}" filter="true" filterMatchMode="contains" autoWidth="false" required="true" converter="entityConverter" requiredMessage="Escolha a Cidade">
+                        <f:selectItem itemLabel="-Selecione-" itemValue=""/>
+                        <f:selectItems value="#{cidadeBean.cidades}" var="cidades" itemLabel="#{cidades.nome}" itemValue="#{cidades}"/>
+                    </p:selectOneMenu>
+
+
+                    <br/>
+                    <br/>
+
+                    <h:commandLink action="#{usuarioBean.selecionarCidade()}">
+                        <button value=""  class="save">
+                            INICIAR
+                            <i class="fa fa-right-arrow"/>
+                        </button>
+                    </h:commandLink>
+
+                </h:form>
+
+            </p:panelGrid>
+
+            <p:panelGrid id="layout" columns="3" columnClasses="ui-grid-col-5, ui-grid-col-2, ui-grid-col-5" layout="grid" styleClass="ui-panelgrid-blank" rendered="#{!usuarioBean.renderSelecionarCidade}" >
+
+                <h:outputLabel value=""/>
+
+                <h:form>
+
+                    <h:commandLink action="menuOrganizacao.jsf">
+                        <button value=""  class="menuButtons">
+                            ORGANIZAÇÃO
+                        </button>
+                    </h:commandLink>
+
+                    <br/>
+                    <br/>
+
+                    <h:commandLink action="menuAtividades.jsf">
+                        <button value=""  class="menuButtons">
+                            ATIVIDADES
+                        </button>
+                    </h:commandLink>
+
+                    <br/>
+                    <br/>
+
+                    <h:commandLink action="relatorios.jsf">
+                        <button value=""  class="menuButtons">
+                            RELATÓRIOS
+                        </button>
+                    </h:commandLink>
+
+                    <br/>
+                    <br/>
+
+                    <h:commandLink action="mapa.jsf">
+                        <button value=""  class="menuButtons">
+                            MAPA
+                        </button>
+                    </h:commandLink>
+
+                    <br/>
+                    <br/>
+
+                    <br/>
+                    <br/>
+
+                    <h:commandLink action="index.jsf">
+                        <button value=""  class="logOut">
+                            SAIR
+                            <i class="fa fa-power-off"/>
+                        </button>
+                    </h:commandLink>
+
+                </h:form>        
+
+            </p:panelGrid>
+
+        </div>
+    </h:body>
+</html>
+
