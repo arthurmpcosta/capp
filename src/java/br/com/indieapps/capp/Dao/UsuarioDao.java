@@ -18,6 +18,8 @@ import org.hibernate.SessionFactory;
  */
 public class UsuarioDao extends Dao {
     
+    //Testando Git
+    
     private SessionFactory sf;
     
     public UsuarioDao(){
